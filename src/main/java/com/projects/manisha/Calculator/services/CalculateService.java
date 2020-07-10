@@ -8,7 +8,7 @@ import java.util.Stack;
 @Service
 public class CalculateService {
 
-    private double calculate(String operator,double leftOperand,double rightOperand) throws ArithmeticException {
+    private double calculate(String operator,double rightOperand,double leftOperand) throws ArithmeticException {
         double result;
         switch (operator)
         {
@@ -28,6 +28,9 @@ public class CalculateService {
             case "^":
                 result = Math.pow(leftOperand,rightOperand);
                 break;
+            case "%":
+                result = leftOperand % rightOperand;
+                break;
             default:
                 result = 0;
 
@@ -37,9 +40,6 @@ public class CalculateService {
 
     public double parseExpression(Calculator calculator) {
         String arr[]=calculator.getExpression().split(" ");
-//        for(int i=0;i<arr.length;i++){
-//            System.out.println(arr[i].toString());
-//        }
 
         Stack<Double> numbers = new Stack<>();
         Stack<String> operator = new Stack<>();
